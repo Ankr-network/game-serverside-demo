@@ -17,6 +17,7 @@ import (
 	"github.com/ethereum/go-ethereum/ethclient"
 	cryptoTyped "github.com/ethersphere/bee/pkg/crypto"
 	eip712 "github.com/ethersphere/bee/pkg/crypto/eip712"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -76,6 +77,8 @@ func setupRouter() *gin.Engine {
 	// Disable Console Color
 	// gin.DisableConsoleColor()
 	r := gin.Default()
+
+	r.Use(cors.Default())
 
 	// GD-3: Fetch the hero data based on its ID and return the transaction to be signed.
 	r.GET("/hero/:id", func(c *gin.Context) {
